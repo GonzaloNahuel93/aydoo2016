@@ -1,0 +1,24 @@
+package ar.edu.untref.aydoo;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+public class PruebaMaquinaExpendedora {
+
+	@Test
+	public void hacerCafeConLecheCon3CucharadasDeAzucar(){
+
+		MaquinaExpendedora maquina = new MaquinaExpendedora();
+
+		Vaso vaso = new Vaso();
+		Assert.assertEquals("El vaso esta vacio", 0, vaso.verContenido().size());
+
+		vaso = maquina.hacerCafeConLecheConNDeAzucar(vaso, 3);
+		Assert.assertEquals("El vaso tiene 3 contenidos", 3, vaso.verContenido().size());
+		Assert.assertTrue("Hay Cafe", vaso.verContenido().get(0).equals("Cafe"));
+		Assert.assertTrue("Hay Leche", vaso.verContenido().get(1).equals("Leche"));
+		Assert.assertTrue("Hay 3 cucharadas de Azucar", vaso.verContenido().get(2).equals("3 cucharadas de Azucar"));
+
+	}
+
+}
