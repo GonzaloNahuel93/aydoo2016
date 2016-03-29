@@ -27,7 +27,7 @@ public class MaquinaExpendedora {
 	 */
 	public Vaso hacerCafeConLecheConNDeAzucar(Vaso vaso, int n){
 
-		this.verificarVasoDistintoDeNull(vaso);
+		vaso = this.verificarVasoDistintoDeNull(vaso);
 
 		vaso = this.hacedorDeCafeConLeche.prepararEnEsteVaso(vaso);
 		vaso = this.agregarAzucar(vaso, n);
@@ -45,7 +45,7 @@ public class MaquinaExpendedora {
 	 */
 	public Vaso hacerTeConLecheConNDeAzucar(Vaso vaso, int n){
 
-		this.verificarVasoDistintoDeNull(vaso);
+		vaso = this.verificarVasoDistintoDeNull(vaso);
 
 		vaso = this.hacedorDeTeConLeche.prepararEnEsteVaso(vaso);
 		vaso = this.agregarAzucar(vaso, n);
@@ -64,7 +64,8 @@ public class MaquinaExpendedora {
 
 		if(vaso == null){
 
-			vaso = new Vaso();
+			Vaso vaso2 = new Vaso();
+			vaso = vaso2;
 
 		}
 
