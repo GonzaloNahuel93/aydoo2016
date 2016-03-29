@@ -94,4 +94,18 @@ public class PruebaMaquinaExpendedora {
 
 	}
 
+	@Test
+	public void seAgregaUnVasoNullPidiendoUnTeConLecheSinAzucar(){
+
+		MaquinaExpendedora maquina = new MaquinaExpendedora();
+
+		Vaso vaso = new Vaso();
+
+		vaso = maquina.hacerTeConLecheConNDeAzucar(null, 0);
+		Assert.assertEquals("El vaso tiene 2 contenidos", 2, vaso.verContenido().size());
+		Assert.assertTrue("Hay Te", vaso.verContenido().get(0).equals("Te"));
+		Assert.assertTrue("Hay Leche", vaso.verContenido().get(1).equals("Leche"));
+
+	}
+
 }
