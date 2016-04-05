@@ -83,4 +83,20 @@ public class PartidoTest {
 
 	}
 
+	@Test
+	public void unPartidoIncorporaAUnCandidatoQuePerteneceAOtroPartidoPeroYaNoQuierePertenecerAlMismoYSeVerificaLosCambiosEnCadaPartido(){
+
+		Partido fpv = new Partido("Frente para la Victoria");
+		Partido una = new Partido("Frente Renovador");
+		Candidato massa = new Candidato("Sergio Massa");
+
+		massa.setPartido(fpv);
+		una.aniadirCandidato(massa);
+
+		Assert.assertEquals(0, fpv.getCandidatos().size());
+		Assert.assertEquals(1, una.getCandidatos().size());
+		Assert.assertTrue(massa.getPartido().getNombre().equals("Frente Renovador"));
+
+	}
+
 }
