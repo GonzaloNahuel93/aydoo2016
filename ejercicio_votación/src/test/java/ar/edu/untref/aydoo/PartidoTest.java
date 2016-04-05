@@ -28,4 +28,17 @@ public class PartidoTest {
 
 	}
 
+	@Test
+	public void seAgregaUnCandidatoAUnPartido(){
+
+		Partido fpv = new Partido("Frente para la Victoria");
+		Candidato scioli = new Candidato("Daniel Scioli");
+
+		fpv.aniadirCandidato(scioli);
+		List<Candidato> candidatos = fpv.getCandidatos();
+
+		Assert.assertEquals(1, candidatos.size());
+
+	}
+
 }
