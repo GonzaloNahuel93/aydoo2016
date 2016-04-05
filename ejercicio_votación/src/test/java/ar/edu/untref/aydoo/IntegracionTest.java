@@ -77,4 +77,22 @@ public class IntegracionTest {
 
 	}
 
+	@Test
+	public void sePideElPartidoGanadorEnUnaProvinciaInvalida(){
+
+		Candidato massa = new Candidato("Sergio Massa");
+		Partido una = new Partido("Frente Renovador");
+		massa.setPartido(una);
+
+		Voto voto1 = new Voto();
+		voto1.emitir("Buenos Aires", massa);
+		Voto voto2 = new Voto();
+		voto2.emitir("Buenos Aires", massa);
+		Voto voto3 = new Voto();
+		voto3.emitir("Buenos Aires", massa);
+
+		Assert.assertNull(CentroDeComputos.getInstance().partidoGanadorEnLaProvincia("Italia"));
+
+	}
+
 }
