@@ -113,4 +113,17 @@ public class PartidoTest {
 
 	}
 
+	@Test
+	public void unPartidoAgregaUnCandidatoPeroDespuesElPartidoCambiaSuNombreYSeVerificaQueElCandidatoSigaEnElPartidoCorrecto(){
+
+		Partido izquierda = new Partido("Zurdos");
+		Candidato delCanio = new Candidato("Nicolas Del Canio");
+
+		izquierda.aniadirCandidato(delCanio);
+		izquierda.setNombre("Frente de Izquierda");
+
+		Assert.assertTrue(delCanio.getPartido().getNombre().equals("Frente de Izquierda"));
+
+	}
+
 }
