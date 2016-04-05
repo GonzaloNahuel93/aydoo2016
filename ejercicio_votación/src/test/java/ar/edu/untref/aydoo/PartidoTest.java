@@ -69,4 +69,18 @@ public class PartidoTest {
 
 	}
 
+
+	@Test
+	public void seEliminaUnCandidatoDeUnPartidoYSeVerificaQueElCandidatoYaNoPertenezcaAEsePartido(){
+
+		Partido una = new Partido("Frente Renovador");
+		Candidato massa = new Candidato("Sergio Massa");
+
+		una.aniadirCandidato(massa);
+		una.eliminarCandidato("Sergio Massa");
+
+		Assert.assertNull(massa.getPartido());
+
+	}
+
 }
