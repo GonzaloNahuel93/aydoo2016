@@ -41,4 +41,16 @@ public class VotoTest {
 
 	}
 
+	@Test(expected = VotoEmitidoException.class)
+	public void seQuiereVolverAEmitirUnVotoUnaVezQueYaFueEmitidoEnBlanco(){
+
+		Voto voto = new Voto();
+		Candidato scioli = new Candidato("Daniel Scioli");
+
+		voto.emitirEnBlanco();
+
+		voto.emitir("Buenos Aires", scioli);
+
+	}
+
 }
