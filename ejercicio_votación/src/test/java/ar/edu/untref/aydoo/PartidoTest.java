@@ -126,4 +126,22 @@ public class PartidoTest {
 
 	}
 
+	@Test
+	public void unPartidoAgregaTresCandidatosPeroDespuesEliminaAUnoYSeVerificaSiLosCambiosSeHicieronCorrectamenteTantoEnElCandidatoEliminadoComoEnElPartido(){
+
+		Partido cambiemos = new Partido("Cambiemos");
+		Candidato macri = new Candidato("Mauricio Macri");
+		Candidato carrio = new Candidato("Elisa Carrio");
+		Candidato kicillof = new Candidato("Axel Kicillof");
+
+		cambiemos.aniadirCandidato(macri);
+		cambiemos.aniadirCandidato(carrio);
+		cambiemos.aniadirCandidato(kicillof);
+		cambiemos.eliminarCandidato("Axel Kicillof");
+
+		Assert.assertEquals(2, cambiemos.getCandidatos().size());
+		Assert.assertNull(kicillof.getPartido());
+
+	}
+
 }
