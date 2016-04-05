@@ -99,4 +99,18 @@ public class PartidoTest {
 
 	}
 
+	@Test
+	public void unPartidoAgregaDosCandidatosYSeVerifcaQueEstenDentroDeSuLista(){
+
+		Partido una = new Partido("Frente Renovador");
+		Candidato massa = new Candidato("Sergio Massa");
+		Candidato sola = new Candidato("Felipe Sola");
+
+		una.aniadirCandidato(massa);
+		una.aniadirCandidato(sola);
+
+		Assert.assertEquals(2, una.getCandidatos().size());
+
+	}
+
 }
