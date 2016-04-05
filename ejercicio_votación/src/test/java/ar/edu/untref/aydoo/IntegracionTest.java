@@ -95,4 +95,51 @@ public class IntegracionTest {
 
 	}
 
+	@Test
+	public void seVotaEnTresProvinciasYSeCompruebaQuienGanoLasEleccionesANivelNacional(){
+
+		Candidato macri = new Candidato("Mauricio Macri");
+		Partido cambiemos = new Partido("Cambiemos");
+		macri.setPartido(cambiemos);
+		Candidato scioli = new Candidato("Daniel Scioli");
+		Partido fpv = new Partido("Frente para la Victoria");
+		scioli.setPartido(fpv);
+
+		//Macri: 8 Votos, Scioli: 7 Votos ==> Ganador de las elecciones: MAURICIO MACRI.
+		Voto voto1 = new Voto();
+		voto1.emitir("Jujuy", macri);
+		Voto voto2 = new Voto();
+		voto2.emitir("Jujuy", macri);
+		Voto voto3 = new Voto();
+		voto3.emitir("Jujuy", macri);
+		Voto voto4 = new Voto();
+		voto4.emitir("Jujuy", macri);
+		Voto voto5 = new Voto();
+		voto5.emitir("Jujuy", scioli);
+		Voto voto6 = new Voto();
+		voto6.emitir("Cordoba", macri);
+		Voto voto7 = new Voto();
+		voto7.emitir("Cordoba", macri);
+		Voto voto8 = new Voto();
+		voto8.emitir("Cordoba", macri);
+		Voto voto9 = new Voto();
+		voto9.emitir("Cordoba", macri);
+		Voto voto10 = new Voto();
+		voto10.emitir("Cordoba", scioli);
+		Voto voto11 = new Voto();
+		voto11.emitir("Rio Negro", scioli);
+		Voto voto12 = new Voto();
+		voto12.emitir("Rio Negro", scioli);
+		Voto voto13 = new Voto();
+		voto13.emitir("Rio Negro", scioli);
+		Voto voto14 = new Voto();
+		voto14.emitir("Rio Negro", scioli);
+		Voto voto15 = new Voto();
+		voto15.emitir("Rio Negro", scioli);
+
+		Candidato candidatoGanadorDeLasElecciones = CentroDeComputos.getInstance().candidatoGanadorANivelNacional();
+		Assert.assertTrue(candidatoGanadorDeLasElecciones.getNombreYApellido().equals("MAURICIO MACRI"));
+
+	}
+
 }
