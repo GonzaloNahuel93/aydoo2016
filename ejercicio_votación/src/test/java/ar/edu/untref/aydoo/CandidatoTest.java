@@ -16,4 +16,14 @@ public class CandidatoTest {
 
 	}
 
+	@Test
+	public void seCreaUnCandidatoConUnNombreYApellidoYSeModificaParaVerificarSiElCambioSeEfectuoDeFormaCorrecta(){
+
+		Candidato massa = new Candidato("Mauricio Macri");
+		massa.setNombreYApellido("Sergio Massa");
+
+		Assert.assertTrue(massa.getNombreYApellido().equals("SERGIO MASSA"));
+
+	}
+
 }
