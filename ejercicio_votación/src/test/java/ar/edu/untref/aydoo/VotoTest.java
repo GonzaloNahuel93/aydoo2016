@@ -93,4 +93,12 @@ public class VotoTest {
 
 	}
 
+	@Test(expected = DatoInvalidoException.class)
+	public void seQuiereEmitirUnVotoColocandoUnCandidatoComoNulo(){
+
+		Voto voto = new Voto();
+		voto.emitir("Buenos Aires", null);
+
+	}
+
 }
