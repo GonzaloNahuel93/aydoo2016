@@ -18,4 +18,15 @@ public class VotoTest {
 
 	}
 
+	@Test
+	public void seCreaUnVotoYSeEmiteEnBlanco(){
+
+		Voto voto = new Voto();
+		voto.emitirEnBlanco();
+
+		Assert.assertNull(voto.getCandidatoVotado());
+		Assert.assertNull(voto.getProvinciaDeOrigen());
+
+	}
+
 }
