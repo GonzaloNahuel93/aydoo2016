@@ -55,4 +55,18 @@ public class PartidoTest {
 
 	}
 
+	@Test
+	public void seAgregaUnCandidatoAUnPartidoYSeElimina(){
+
+		Partido una = new Partido("Frente Renovador");
+		Candidato massa = new Candidato("Sergio Massa");
+
+		una.aniadirCandidato(massa);
+		una.eliminarCandidato("Sergio Massa");
+		List<Candidato> candidatos = una.getCandidatos();
+
+		Assert.assertEquals(0, candidatos.size());
+
+	}
+
 }
