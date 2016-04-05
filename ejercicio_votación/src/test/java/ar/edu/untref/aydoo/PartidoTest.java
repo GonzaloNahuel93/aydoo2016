@@ -69,7 +69,6 @@ public class PartidoTest {
 
 	}
 
-
 	@Test
 	public void seEliminaUnCandidatoDeUnPartidoYSeVerificaQueElCandidatoYaNoPertenezcaAEsePartido(){
 
