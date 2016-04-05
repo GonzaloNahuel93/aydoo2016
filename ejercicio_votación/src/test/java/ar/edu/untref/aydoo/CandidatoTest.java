@@ -41,4 +41,22 @@ public class CandidatoTest {
 
 	}
 
+	@Test
+	public void unCandidatoSeCambiaDePartidoYSeVerificaSiElCambioHaSidoConExitoEnAmbosLados(){
+
+		Candidato barbaro = new Candidato("Julio Barbaro");
+		Partido fpv = new Partido("Frente para la Victoria");
+		Partido una = new Partido("Frente Renovador");
+		barbaro.setPartido(fpv);
+
+		barbaro.setPartido(una);
+		Partido partidoObtenido = barbaro.getPartido();
+		Candidato candidatoObtenido = una.getCandidatos().get(0);
+
+		Assert.assertTrue(partidoObtenido.getNombre().equals("Frente Renovador"));
+		Assert.assertEquals(1, una.getCandidatos().size());
+		Assert.assertTrue(candidatoObtenido.getNombreYApellido().equals("JULIO BARBARO"));
+
+	}
+
 }
