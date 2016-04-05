@@ -29,4 +29,16 @@ public class VotoTest {
 
 	}
 
+	@Test(expected = VotoEmitidoException.class)
+	public void seQuiereVolverAEmitirUnVotoUnaVezQueYaFueEmitidoConOtroCandidato(){
+
+		Voto voto = new Voto();
+		Candidato scioli = new Candidato("Daniel Scioli");
+		Candidato macri = new Candidato("Mauricio Macri");
+
+		voto.emitir("Rio Negro", scioli);
+		voto.emitir("Rio Negro", macri);
+
+	}
+
 }
