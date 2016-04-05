@@ -16,4 +16,16 @@ public class PartidoTest {
 
 	}
 
+	@Test
+	public void seCreaUnPartidoConUnNombreYDespuesSeCambiaParaVerificarSiSeHizoCorrectamenteElCambio(){
+
+		Partido partido = new Partido("Pro");
+
+		partido.setNombre("Cambiemos");
+		String nombreObtenido = partido.getNombre();
+
+		Assert.assertTrue(nombreObtenido.equals("Cambiemos"));
+
+	}
+
 }
