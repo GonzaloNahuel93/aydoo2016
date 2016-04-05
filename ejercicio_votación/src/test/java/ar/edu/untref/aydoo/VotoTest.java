@@ -83,4 +83,14 @@ public class VotoTest {
 
 	}
 
+	@Test(expected = DatoInvalidoException.class)
+	public void seQuiereEmitirUnVotoColocandoUnaProvinciaComoNula(){
+
+		Voto voto = new Voto();
+		Candidato stolbizer = new Candidato("Margarita Stolbizer");
+
+		voto.emitir(null, stolbizer);
+
+	}
+
 }
