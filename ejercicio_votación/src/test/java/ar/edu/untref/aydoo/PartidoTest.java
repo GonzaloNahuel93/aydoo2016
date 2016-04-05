@@ -41,4 +41,18 @@ public class PartidoTest {
 
 	}
 
+	@Test
+	public void seAgregaUnCandidatoAUnPartidoYSeVerificaQueEseCandidatoPertenezcaRealmenteAlPartidoEnElQueIngreso(){
+
+		Partido fpv = new Partido("Frente para la Victoria");
+		Candidato scioli = new Candidato("Daniel Scioli");
+
+		fpv.aniadirCandidato(scioli);
+		List<Candidato> candidatos = fpv.getCandidatos();
+		Candidato candidato = candidatos.get(0);
+
+		Assert.assertTrue(candidato.getPartido().getNombre().equals("Frente para la Victoria"));
+
+	}
+
 }
