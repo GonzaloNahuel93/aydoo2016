@@ -162,7 +162,7 @@ public class CentroDeComputos {
 
 	 }
 
-	 protected void validarYAlmacenarVoto(Voto voto){
+	 protected void almacenarVoto(Voto voto){
 		 this.votos.add(voto);
 	 }
 

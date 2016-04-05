@@ -63,7 +63,7 @@ public class Voto {
 
 				this.emitido = true;
 
-				CentroDeComputos.getInstance().validarYAlmacenarVoto(this);
+				CentroDeComputos.getInstance().almacenarVoto(this);
 
 			}else{
 
