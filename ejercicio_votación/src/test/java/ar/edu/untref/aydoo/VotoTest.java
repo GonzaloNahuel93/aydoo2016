@@ -101,4 +101,14 @@ public class VotoTest {
 
 	}
 
+	@Test(expected = DatoInvalidoException.class)
+	public void seQuiereEmitirUnVotoColocandoUnaProvinciaInvalida(){
+
+		Voto voto = new Voto();
+		Candidato delCanio = new Candidato("Nicolas Del Canio");
+
+		voto.emitir("Italia", delCanio);
+
+	}
+
 }
