@@ -26,4 +26,19 @@ public class CandidatoTest {
 
 	}
 
+	@Test
+	public void seCreaUnCandidatoYSeLeAsignaUnPartidoVerificandoQueElPartidoLoTengaRegistrado(){
+
+		Candidato scioli = new Candidato("Daniel Scioli");
+		Partido fpv = new Partido("Frente para la Victoria");
+
+		scioli.setPartido(fpv);
+		Partido partidoObtenido = scioli.getPartido();
+		Candidato candidatoObtenido = fpv.getCandidatos().get(0);
+
+		Assert.assertTrue(partidoObtenido.getNombre().equals("Frente para la Victoria"));
+		Assert.assertTrue(candidatoObtenido.getNombreYApellido().equals("DANIEL SCIOLI"));
+
+	}
+
 }
