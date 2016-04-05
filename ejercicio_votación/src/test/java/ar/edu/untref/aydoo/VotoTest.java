@@ -53,4 +53,16 @@ public class VotoTest {
 
 	}
 
+	@Test(expected = VotoEmitidoException.class)
+	public void seQuiereEmitirUnVotoEnBlancoUnaVezQueYaFueEmitidoConLosDatosRequeridos(){
+
+		Voto voto = new Voto();
+		Candidato stolbizer = new Candidato("Margarita Stolbizer");
+
+		voto.emitir("Buenos Aires", stolbizer);
+
+		voto.emitirEnBlanco();
+
+	}
+
 }
