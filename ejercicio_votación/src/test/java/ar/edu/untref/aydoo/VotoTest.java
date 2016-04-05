@@ -65,4 +65,14 @@ public class VotoTest {
 
 	}
 
+	@Test(expected = VotoEmitidoException.class)
+	public void seQuiereEmitirEnBlancoUnVotoDosVeces(){
+
+		Voto voto = new Voto();
+		voto.emitirEnBlanco();
+
+		voto.emitirEnBlanco();
+
+	}
+
 }
