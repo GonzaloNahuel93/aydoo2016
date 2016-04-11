@@ -55,4 +55,25 @@ public class LibreriaTest {
 
 	}
 
+	@Test
+	public void unClienteCompraUnArticuloEnEneroYRecibeDosEjemplaresDeUnaRevistaPorSuscripcionAnual(){
+
+		Libreria libreria = Libreria.getInstance();
+		Cliente maria = new Cliente("Maria", "Olvarria 4500");
+		Mes enero = new Mes("Enero");
+		Compra compra = new Compra(enero);
+		Periodicidad quincenal = new Periodicidad("Quincenal", 15);
+		Suscriptible barcelona = new Revista("Barcelona", 20, quincenal);
+		Periodicidad diaria = new Periodicidad("Diaria", 1);
+		Producto pagina12 = new Periodico("Pagina 12", 12, diaria);
+
+		libreria.agregarCliente(maria);
+		maria.suscribirseAnualmente(barcelona);
+		compra.agregarProducto(pagina12);
+		maria.agregarCompra(compra);
+
+		Assert.assertEquals(44.0, libreria.calcularMontoACobrar(enero, maria), 0.0);
+
+	}
+
 }
