@@ -53,6 +53,14 @@ public class Libreria {
 	}
 
 	/**
+	 * @Pre: - 
+	 * @Post: Vacia la lista de productos que tiene registrado la Libreria.
+	 */
+	public void vaciarListaDeProducto(){
+		this.productos.clear();
+	}
+
+	/**
 	 * @Pre: cliente es distinto de null (La entrada se supone valida). 
 	 * @Post: Agrega el cliente a la lista de clientes de la Libreria.
 	 */
