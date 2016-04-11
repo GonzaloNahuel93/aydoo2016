@@ -114,4 +114,30 @@ public class LibreriaTest {
 
 	}
 
+	@Test
+	public void unClienteEstaInscriptoAnualmenteAUnaRevistaYAUnPeriodicoEInscriptoNoAnualmenteAOtraRevista(){
+
+		Libreria libreria = Libreria.getInstance();
+		Cliente florencia = new Cliente("Florencia", "Bartolome Mitre 520");
+		Mes diciembre = new Mes("Diciembre");
+		Periodicidad quincenal = new Periodicidad("Quincenal", 15);
+		Suscriptible paraTi = new Revista("Para Ti", 30, quincenal);
+		Periodicidad diaria = new Periodicidad("Diaria", 1);
+		Suscriptible laNacion = new Periodico("La Nacion", 10, diaria);
+		Suscriptible billiken = new Revista("Billiken", 40, quincenal);
+
+		libreria.agregarCliente(florencia);
+		florencia.suscribirseAnualmente(paraTi);
+		florencia.suscribirseAnualmente(laNacion);
+		florencia.suscribirse(billiken);
+
+		//Suscripcion ANUAL a la Revista "Para Ti" (Edicion quincenal) ==> $48 [60] (20% de descuento)
+		//Suscripcion ANUAL al Diario "La Nacion" (Edicion diaria) ==> $240 [300] (20% de descuento)
+		//Suscripcion NO ANUAL a la Revista "Billiken" (Edicion quincenal) ==> $80
+		//
+		//Total: 48 + 240 + 80 = $368
+		Assert.assertEquals(368.0, libreria.calcularMontoACobrar(diciembre, florencia), 0.0);
+
+	}
+
 }
