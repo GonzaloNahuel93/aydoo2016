@@ -76,4 +76,42 @@ public class LibreriaTest {
 
 	}
 
+	@Test
+	public void unClienteHaceDosComprasDuranteUnMismoMesYSeSuscribeAUnDiarioDeEdicionDiaria(){
+
+		Libreria libreria = Libreria.getInstance();
+		Cliente gonzalo = new Cliente("Gonzalo", "Avenida San Martin 504");
+		Mes junio = new Mes("Junio");
+		Compra primeraCompra = new Compra(junio);
+		Compra segundaCompra = new Compra(junio);
+		Periodicidad diaria = new Periodicidad("Diaria", 1);
+		Suscriptible clarin = new Periodico("Clarin", 10, diaria);
+		Producto harryPotter = new Libro("Harry Potter y La Piedra Filosofal", 100);
+		Producto lapicera = new ArticuloDeLibreria("Lapicera BIC", 5);
+		Producto cuadernoCuadriculado = new ArticuloDeLibreria("Cuaderno cuadriculado AVON", 15);
+		Periodicidad quincenal = new Periodicidad("Quincenal", 15);
+		Producto realMadrid = new Revista("Real Madrid", 20, quincenal);
+		Producto manchesterUnited = new Revista("Manchester United", 20, quincenal);
+		Producto fibron = new ArticuloDeLibreria("Fibron negro", 25);
+
+		libreria.agregarCliente(gonzalo);
+		gonzalo.suscribirse(clarin);
+		primeraCompra.agregarProducto(harryPotter);
+		primeraCompra.agregarProducto(lapicera);
+		primeraCompra.agregarProducto(cuadernoCuadriculado);
+		gonzalo.agregarCompra(primeraCompra);
+		segundaCompra.agregarProducto(realMadrid);
+		segundaCompra.agregarProducto(manchesterUnited);
+		segundaCompra.agregarProducto(fibron);
+		gonzalo.agregarCompra(segundaCompra);
+
+		//Suscripcion NO ANUAL a Diario "Clarin" (Edicion diaria) ==> 10 . 30 = $300
+		//Primera Compra ==> 100 + 6,05 [5] + 18,15 [15] = $124,2
+		//Segunda Compra ==> 20 + 20 + 30,25 [25] = $70,25
+		//
+		//Total: 300 + 124,2 + 70,25 = $494,45
+		Assert.assertEquals(494.45, libreria.calcularMontoACobrar(junio, gonzalo), 0.00);
+
+	}
+
 }
