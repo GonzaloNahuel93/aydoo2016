@@ -140,4 +140,35 @@ public class LibreriaTest {
 
 	}
 
+	@Test
+	public void unClienteHaceDosComprasEnDiferentesMesesYTieneUnaSuscripcionAnualAUnDiarioPeroLaLibreriaSoloQuiereSaberCuantoDebeCobrarEnUnMes(){
+
+		Libreria libreria = Libreria.getInstance();
+		Cliente martin = new Cliente("Martin", "Manuel Belgrano 1005");
+		Mes junio = new Mes("Junio");
+		Compra compraDeJunio = new Compra(junio);
+		Mes julio = new Mes("Julio");
+		Compra compraDeJulio = new Compra(julio);
+		Periodicidad diaria = new Periodicidad("Diaria", 1);
+		Suscriptible diario26 = new Periodico("Diario 26", 8, diaria);
+		Producto liquidPaper = new ArticuloDeLibreria("Liquid Paper", 30);
+		Producto uml = new Libro("UML", 150);
+		Producto inteligenciaArtificial = new Libro("Inteligencia Artificial", 780);
+
+		libreria.agregarCliente(martin);
+		martin.suscribirseAnualmente(diario26);
+		compraDeJunio.agregarProducto(uml);
+		martin.agregarCompra(compraDeJunio);
+		compraDeJulio.agregarProducto(liquidPaper);
+		compraDeJulio.agregarProducto(inteligenciaArtificial);
+		martin.agregarCompra(compraDeJulio);
+
+		//Suscripcion ANUAL al Diario "Diario 26" (Edicion diaria) ==> $192 [240] (20% de descuento)
+		//Compra de Julio ==> 36,3 [30] + 780 = $816,3
+		//
+		//Total: 192 + 816,3 = $1008,3
+		Assert.assertEquals(1008.3, libreria.calcularMontoACobrar(julio, martin), 0.0);
+
+	}
+
 }
