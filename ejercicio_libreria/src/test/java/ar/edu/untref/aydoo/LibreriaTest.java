@@ -10,7 +10,7 @@ public class LibreriaTest {
 	public void vaciarProductosDeLaLibreria(){
 
 		Libreria libreria = Libreria.getInstance();
-		libreria.productos.clear();
+		libreria.vaciarListaDeProducto();
 
 	}
 
