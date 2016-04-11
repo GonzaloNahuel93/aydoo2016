@@ -24,4 +24,23 @@ public class SuscripcionTest {
 
 	}
 
+	@Test
+	public void seCreaUnaSuscripcionAnualYSeVerificaSiSeGuardaronCorrectamenteLosDatos(){
+
+		Cliente gustavo = new Cliente("Gustavo", "Caferata 789");
+		Periodicidad semanal = new Periodicidad("Semanal", 7);
+		Suscriptible revista = new Revista("Politica", 10, semanal);
+		boolean esAnual = true;
+		Suscripcion suscripcion = new Suscripcion(gustavo, revista, esAnual);
+
+		Cliente clienteObtenido = suscripcion.getCliente();
+		Suscriptible suscriptibleObtenido = suscripcion.getSuscriptible();
+		boolean booleanObtenido = suscripcion.esAnual();
+
+		Assert.assertTrue(clienteObtenido.getNombre().equals("Gustavo"));
+		Assert.assertTrue(((Producto)suscriptibleObtenido).getDescripcion().equals("Politica"));
+		Assert.assertTrue(booleanObtenido);
+
+	}
+
 }
