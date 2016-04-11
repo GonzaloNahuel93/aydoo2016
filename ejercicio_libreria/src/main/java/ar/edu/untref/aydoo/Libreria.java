@@ -11,7 +11,7 @@ import java.util.List;
 public class Libreria {
 
 	private static Libreria instance = new Libreria();
-	protected List<Producto> productos;
+	private List<Producto> productos;
 	private List<Cliente> clientes;
 
 	private Libreria(){
