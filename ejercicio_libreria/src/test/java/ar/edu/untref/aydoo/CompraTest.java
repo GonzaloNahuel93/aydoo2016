@@ -15,4 +15,17 @@ public class CompraTest {
 
 	}
 
+	@Test
+	public void seAgregaUnProductoALaCompraYSeCompruebaQueSeHayaAgregado(){
+
+		Mes febrero = new Mes("Febrero");
+		Compra compra = new Compra(febrero);
+		Producto lapicera = new ArticuloDeLibreria("Lapicera BIC", 10);
+
+		compra.agregarProducto(lapicera);
+
+		Assert.assertEquals(1, compra.getProductos().size());
+
+	}
+
 }
