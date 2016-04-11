@@ -43,4 +43,17 @@ public class ClienteTest {
 
 	}
 
+	@Test
+	public void unClienteSeSuscribeAnualmenteAUnaRevistaYSeVerificaQueLaSuscripcionSeHayaGuardadoDeFormaCorrecta(){
+
+		Cliente juan = new Cliente("Juan", "Pringles 541");
+		Periodicidad quincenal = new Periodicidad("Quincenal", 15);
+		Suscriptible pokemon = new Revista("Pokemon", 50, quincenal);
+
+		juan.suscribirseAnualmente(pokemon);
+
+		Assert.assertEquals(1, juan.getSuscripciones().size());
+
+	}
+
 }
