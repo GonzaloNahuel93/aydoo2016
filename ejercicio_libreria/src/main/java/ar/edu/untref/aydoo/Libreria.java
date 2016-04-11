@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * <Singleton>
- * @author Gonzalo Nahuel
+ * @author Gonzalo Nahuel - Entregado el 11/04/2016
  *
  */
 public class Libreria {
