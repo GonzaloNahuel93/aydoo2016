@@ -31,4 +31,28 @@ public class LibreriaTest {
 
 	}
 
+	@Test
+	public void unClienteCompraCuatroArticulosEnAgostoYNoEstaSuscriptoANinguno(){
+
+		Libreria libreria = Libreria.getInstance();
+		Cliente juan = new Cliente("Juan", "Juan Manuel de Rosas 4578");
+		Mes agosto = new Mes("Agosto");
+		Compra compra = new Compra(agosto);
+		Producto elHobbit = new Libro("El Hobbit", 50);
+		Producto lapicera1 = new ArticuloDeLibreria("Lapicera BIC", 5);
+		Producto lapicera2 = new ArticuloDeLibreria("Lapicera BIC", 5);
+		Periodicidad mensual = new Periodicidad("Mensual", 30);
+		Producto elGrafico = new Revista("El Grafico", 30, mensual);
+
+		libreria.agregarCliente(juan);
+		compra.agregarProducto(elHobbit);
+		compra.agregarProducto(lapicera1);
+		compra.agregarProducto(lapicera2);
+		compra.agregarProducto(elGrafico);
+		juan.agregarCompra(compra);
+
+		Assert.assertEquals(92.1, libreria.calcularMontoACobrar(agosto, juan), 0.0);
+
+	}
+
 }
