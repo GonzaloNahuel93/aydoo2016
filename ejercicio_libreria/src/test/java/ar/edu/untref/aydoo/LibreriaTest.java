@@ -115,7 +115,7 @@ public class LibreriaTest {
 	}
 
 	@Test
-	public void unClienteEstaInscriptoAnualmenteAUnaRevistaYAUnPeriodicoEInscriptoNoAnualmenteAOtraRevista(){
+	public void unClienteEstaSuscriptoAnualmenteAUnaRevistaYAUnPeriodicoYSuscriptoNoAnualmenteAOtraRevista(){
 
 		Libreria libreria = Libreria.getInstance();
 		Cliente florencia = new Cliente("Florencia", "Bartolome Mitre 520");
@@ -141,7 +141,7 @@ public class LibreriaTest {
 	}
 
 	@Test
-	public void unClienteHaceDosComprasEnDiferentesMesesYTieneUnaSuscripcionAnualAUnDiarioPeroLaLibreriaSoloQuiereSaberCuantoDebeCobrarEnUnMes(){
+	public void unClienteHaceDosComprasEnDiferentesMesesYTieneUnaSuscripcionAnualAUnDiarioPeroLaLibreriaSoloQuiereSaberCuantoDebeCobrarleEnUnMes(){
 
 		Libreria libreria = Libreria.getInstance();
 		Cliente martin = new Cliente("Martin", "Manuel Belgrano 1005");
