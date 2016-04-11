@@ -30,4 +30,17 @@ public class ClienteTest {
 
 	}
 
+	@Test
+	public void unClienteSeSuscribeAUnaRevistaYSeVerificaQueLaSuscripcionSeHayaGuardadoDeFormaCorrecta(){
+
+		Cliente juan = new Cliente("Juan", "Pringles 541");
+		Periodicidad quincenal = new Periodicidad("Quincenal", 15);
+		Suscriptible dragonBallZ = new Revista("Dragon Ball Z", 50, quincenal);
+
+		juan.suscribirse(dragonBallZ);
+
+		Assert.assertEquals(1, juan.getSuscripciones().size());
+
+	}
+
 }
