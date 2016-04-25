@@ -1,18 +1,23 @@
 package ar.edu.untref.aydoo;
 
-public enum Mes {
+public class Mes {
 
-	ENERO,
-	FEBRERO,
-	MARZO,
-	ABRIL,
-	MAYO,
-	JUNIO,
-	JULIO,
-	AGOSTO,
-	SEPTIEMBRE,
-	OCTUBRE,
-	NOVIEMBRE,
-	DICIEMBRE
+	private String nombre;
+
+	/**
+	 * @Pre: nombre es distinto de null (La entrada se supone valida).
+	 * @Post: Inicializa el Mes con el nombre insertado.
+	 */
+	public Mes(String nombre){
+		this.nombre = nombre;
+	}
+
+	/**
+	 * @Pre: - 
+	 * @Post: Devuelve el nombre del Mes.
+	 */
+	public String getNombre(){
+		return this.nombre;
+	}
 
 }

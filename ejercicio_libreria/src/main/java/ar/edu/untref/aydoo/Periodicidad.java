@@ -1,20 +1,33 @@
 package ar.edu.untref.aydoo;
 
-public enum Periodicidad {
+public class Periodicidad {
 
-	DIARIA(30),
-	SEMANAL(4),
-	QUINCENAL(2),
-	MENSUAL(1);
+	private String descripcion;
+	private int frecuenciaDeEdicion;
 
-	private int cantidadDeNumerosAlMes;
-
-	private Periodicidad(int cantidadDeNumerosAlMes){
-		this.cantidadDeNumerosAlMes = cantidadDeNumerosAlMes;
+	/**
+	 * @Pre: descripcion es distinto de null y frecuenciaDeEdicion es un entero mayor a 0 (cero) medido en dias (Las entradas se suponen validas).
+	 * @Post: Inicializa la Perodicidad con la descripcion y frecuenciaDeEdicion insertados.
+	 */
+	public Periodicidad(String descripcion, int frecuenciaDeEdicion){
+		this.descripcion = descripcion;
+		this.frecuenciaDeEdicion = frecuenciaDeEdicion;
 	}
 
-	public int getCantidadDeNumerosAlMes(){
-		return this.cantidadDeNumerosAlMes;
+	/**
+	 * @Pre: - 
+	 * @Post: Devuelve la descripcion de la Periodicidad.
+	 */
+	public String getDescripcion(){
+		return this.descripcion;
+	}
+
+	/**
+	 * @Pre: - 
+	 * @Post: Devuelve la frecuencia de edicion de la Periodicidad en dias.
+	 */
+	public int getFrecuenciaDeEdicion(){
+		return this.frecuenciaDeEdicion;
 	}
 
 }
