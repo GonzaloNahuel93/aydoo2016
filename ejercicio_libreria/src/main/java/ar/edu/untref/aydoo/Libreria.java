@@ -1,177 +1,73 @@
 package ar.edu.untref.aydoo;
 
-import java.util.LinkedList;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-/**
- * <Singleton>
- */
 public class Libreria {
 
-	private static Libreria instance = new Libreria();
-	private List<Producto> productos;
-	private List<Cliente> clientes;
+	private String nombre;
+	private List<Compra> compras;
 
-	private Libreria(){
-		this.productos = new LinkedList<Producto>();
-		this.clientes = new LinkedList<Cliente>();
+	public Libreria(String nombre){
+		this.nombre = nombre;
+		this.compras = new ArrayList<Compra>();
 	}
 
-	/**
-	 * @Pre: -
-	 * @Post: Devuelve la unica instancia de la clase.
-	 * @return
-	 */
-	public static Libreria getInstance() {
+	public BigDecimal calcularMontoACobrar(Mes mes, Cliente cliente){	
 
-	    if(instance == null){
+		BigDecimal montoACobrar = new java.math.BigDecimal("0.00");
+		Compra compraAComparar;
+		Cliente clienteAComparar;
+		Mes mesAComparar;
 
-	        instance = new Libreria();
+		Iterator<Compra> itCompras = this.compras.iterator();
 
-	    }
+		while(itCompras.hasNext()){
 
-	    return instance;
+			compraAComparar = itCompras.next();
+			clienteAComparar = compraAComparar.getCliente();
+			mesAComparar = compraAComparar.getMes();
 
-	 }
-
-	/**
-	 * @Pre: producto es distinto de null (La entrada se supone valida).
-	 * @Post: Agrega el producto a la lista de productos de la Libreria.
-	 */
-	public void agregarProducto(Producto producto){
-		this.productos.add(producto);
-	}
-
-	/**
-	 * @Pre: - 
-	 * @Post: Devuelve la lista de productos que tiene la Libreria.
-	 */
-	public List<Producto> getProductos(){
-		return this.productos;
-	}
-
-	/**
-	 * @Pre: - 
-	 * @Post: Vacia la lista de productos que tiene registrado la Libreria.
-	 */
-	public void vaciarListaDeProducto(){
-		this.productos.clear();
-	}
-
-	/**
-	 * @Pre: cliente es distinto de null (La entrada se supone valida). 
-	 * @Post: Agrega el cliente a la lista de clientes de la Libreria.
-	 */
-	public void agregarCliente(Cliente cliente){
-		this.clientes.add(cliente);
-	}
-
-	/**
-	 * @Pre: - 
-	 * @Post: Devuelve la lista de clientes que tiene la Libreria.
-	 */
-	public List<Cliente> getClientes(){
-		return this.clientes;
-	}
-
-	/**
-	 * @Pre: mes y cliente son distintos de null (La entrada se supone valida), y cliente existe dentro de la lista de la Libreria.
-	 * @Post: Devuelve un decimal que representa la cantidad de dinero a cobrarle al cliente en el mes ingresado previamente.
-	 */
-	public double calcularMontoACobrar(Mes mes, Cliente cliente){
-
-		double montoTotalACobrar = 0;
-
-		if(this.clienteExiste(cliente)){
-
-			List<Compra> comprasDelMes = this.obtenerComprasEnElMesDelCliente(mes, cliente);
-
-			for(int i = 0 ; i < comprasDelMes.size() ; i++){
-
-				Compra compraActual = comprasDelMes.get(i);
-				montoTotalACobrar += this.calcularMontoACobrarDeLaCompra(compraActual); 
-
-			}
-
-			montoTotalACobrar += calcularMontoACobrarPorSuscripciones(cliente);
-
-		}
-
-		return montoTotalACobrar;
-
-	}
-
-	private boolean clienteExiste(Cliente cliente){
-
-		boolean clienteExiste = false;
-
-		for(int i = 0 ; i < this.clientes.size() ; i++){
-
-			if(this.clientes.get(i) == cliente){
-				clienteExiste = true;
+			if (clienteAComparar.equals(cliente) && mesAComparar.equals(mes)){
+				montoACobrar = montoACobrar.add(calcularMontoDeCompra(compraAComparar.getProductos()));
 			}
 
 		}
 
-		return clienteExiste;
-
+		return montoACobrar;
 	}
 
-	private List<Compra> obtenerComprasEnElMesDelCliente(Mes mes, Cliente cliente) {
+	private BigDecimal calcularMontoDeCompra(List<Producto> productos) {
 
-		List<Compra> comprasDelMesPedido = new LinkedList<Compra>();
+		BigDecimal montoDeCompra = new java.math.BigDecimal("0.00");
 
-		for(int i = 0 ; i < cliente.getCompras().size() ; i++){
-
-			Compra compraActual = cliente.getCompras().get(i);
-
-			if(compraActual.getMes() == mes){				
-				comprasDelMesPedido.add(compraActual);
-			}
-
+		for (Producto producto : productos){
+			montoDeCompra = montoDeCompra.add(producto.getPrecio()); 
 		}
 
-		return comprasDelMesPedido;
-
+		return montoDeCompra;
 	}
 
-	private double calcularMontoACobrarDeLaCompra(Compra compra){
-
-		double montoDeLaCompra = 0;
-
-		for(int i = 0 ; i < compra.getProductos().size() ; i++){
-
-			Producto productoActual = compra.getProductos().get(i);
-			montoDeLaCompra += productoActual.getPrecioAPagar();
-
-		}
-
-		return montoDeLaCompra;
-
+	public String getNombre() {
+		return nombre;
 	}
 
-	private double calcularMontoACobrarPorSuscripciones(Cliente cliente) {
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-		double montoPorSuscripciones = 0;
+	public void agregarCompra(Compra compra) {
+		this.compras.add(compra);
+	}
 
-		for(int i = 0 ; i < cliente.getSuscripciones().size() ; i++){
+	public void agregarAlquiler(Mes mes, Cliente cliente, Alquiler alquiler) {
 
-			Suscripcion suscripcionActual = cliente.getSuscripciones().get(i);
+		Compra compra = new Compra(mes, cliente);
+		compra.agregarProducto(alquiler);
 
-			int ejemplaresRecibidosDelMes = suscripcionActual.getSuscriptible().ejemplaresPorMes();
-			double precioUnitario = ((Producto)suscripcionActual.getSuscriptible()).getPrecioAPagar();
-
-			double descuento = 0;
-
-			if(suscripcionActual.esAnual()){
-				descuento = (ejemplaresRecibidosDelMes * precioUnitario) * 0.2;
-			}
-
-			montoPorSuscripciones += (ejemplaresRecibidosDelMes * precioUnitario) - descuento;
-
-		}
-
-		return montoPorSuscripciones;
+		this.agregarCompra(compra);
 
 	}
 

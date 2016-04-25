@@ -1,24 +1,21 @@
 package ar.edu.untref.aydoo;
 
+import java.math.BigDecimal;
+
 public class ArticuloDeLibreria extends Producto{
 
-	/**
-	 * @Pre: descripcion es distinto de null, y precioUnitario es un decimal mayor que 0 (Cero) (Las entradas se suponen validas).
-	 * @Post: Inicializa el Articulo de Libreria con la descripcion y el precio unitario insertados.
-	 */
-	public ArticuloDeLibreria(String descripcion, double precioUnitario){
-		super(descripcion, precioUnitario);
-		Libreria.getInstance().agregarProducto(this);
+	private BigDecimal porcentajeIVA = new BigDecimal("21.00");
+	private BigDecimal iva;
+
+	public ArticuloDeLibreria(String descripcion, BigDecimal precio){
+		super(descripcion, precio);
+		BigDecimal cien = new BigDecimal("100.00");
+		this.iva = (precio.multiply(porcentajeIVA)).divide(cien);
 	}
 
-	/**
-	 * @Pre: - 
-	 * @Post: Devuelve el precio a pagar, con IVA incluido, por el Articulo de Libreria en base al precio unitario.
-	 */
 	@Override
-	public double getPrecioAPagar() {
-		double montoTotal = this.precioUnitario * 1.21;		
-		return montoTotal;
+	public BigDecimal getPrecio(){
+		return this.iva.add(super.getPrecio());
 	}
 
 }

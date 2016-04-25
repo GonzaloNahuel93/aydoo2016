@@ -1,45 +1,35 @@
 package ar.edu.untref.aydoo;
 
-public class Suscripcion {
+import java.math.BigDecimal;
 
-	private Cliente cliente;
-	private Suscriptible suscriptible;
-	private boolean esAnual;
+public class Suscripcion extends Producto{
 
-	/**
-	 * @Pre: cliente y suscriptible son distintos de null.
-	 * @Post: Se crea la Suscripcion con el cliente, el suscriptible indicados, y el boolean que indica si se refiere a una suscripcion anual o no.
-	 */
-	public Suscripcion(Cliente cliente, Suscriptible suscriptible, boolean esAnual){
+	private DiarioYRevista productoSuscripto;
+	private TipoSuscripcion tipoSuscripcion;
+	private static final BigDecimal porcentajeDescuento = new BigDecimal("20.00");
 
-		this.cliente = cliente;
-		this.suscriptible = suscriptible;
-		this.esAnual = esAnual;
-
+	public Suscripcion(String descripcion, BigDecimal precioUnitario, DiarioYRevista productoSuscripto, TipoSuscripcion tipoSuscripcion){
+		super(descripcion, precioUnitario);
+		this.productoSuscripto = productoSuscripto;
+		this.tipoSuscripcion = tipoSuscripcion;
 	}
 
-	/**
-	 * @Pre: - 
-	 * @Post: Devuelve el Cliente al que pertenece la Suscripcion.
-	 */
-	public Cliente getCliente(){
-		return this.cliente;
-	}
+	@Override
+	public BigDecimal getPrecio(){
 
-	/**
-	 * @Pre: - 
-	 * @Post: Devuelve el suscriptible al que esta sujeto la Suscripcion.
-	 */
-	public Suscriptible getSuscriptible(){
-		return this.suscriptible;
-	}
+		final BigDecimal cien = new BigDecimal("100.00");
+		BigDecimal precioSuscripcion = new BigDecimal("0.00");
+		BigDecimal descuento = new BigDecimal("0.00");
+		if (this.tipoSuscripcion.equals(TipoSuscripcion.ANUAL)){
+			descuento = super.getPrecio().multiply(porcentajeDescuento).divide(cien);
+		}
+		BigDecimal precioConDescuento = super.getPrecio().subtract(descuento);
+		BigDecimal cantidadDeNumeros; 
 
-	/**
-	 * @Pre: - 
-	 * @Post: Devuelve un boolean que indica si la Suscripcion es anual o no.
-	 */
-	public boolean esAnual(){
-		return this.esAnual;
+    	cantidadDeNumeros= new BigDecimal(this.productoSuscripto.getPeriodicidad().getCantidadDeNumerosAlMes());
+    	precioSuscripcion = precioConDescuento.multiply(cantidadDeNumeros);
+
+		return precioSuscripcion;
 	}
 
 }

@@ -1,125 +1,43 @@
 package ar.edu.untref.aydoo;
 
-import java.util.LinkedList;
-import java.util.List;
-
 public class Cliente {
 
 	private String nombre;
+	private String apellido;
 	private String direccion;
-	private List<Compra> compras;
-	private List<Suscripcion> suscripciones;
 
-	/**
-	 * @Pre: nombre y direccion son distintos de null (Las entradas se suponen validas).
-	 * @Post: Se Inicializa el Cliente con el nombre y la direccion insertados.
-	 */
-	public Cliente(String nombre, String direccion){
-
+	public Cliente(String nombre, String apellido, String direccion){
 		this.nombre = nombre;
+		this.apellido = apellido;
 		this.direccion = direccion;
-		this.compras = new LinkedList<Compra>();
-		this.suscripciones = new LinkedList<Suscripcion>();
-
 	}
 
-	/**
-	 * @Pre: - 
-	 * @Post: Devuelve el nombre del Cliente.
-	 */
-	public String getNombre(){
-		return this.nombre;
+	public String getNombre() {
+		return nombre;
 	}
 
-	/**
-	 * @Pre: - 
-	 * @Post: Devuelve la direccion del Cliente.
-	 */
-	public String getDireccion(){
-		return this.direccion;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	/**
-	 * @Pre: nuevaCompra es distinto de null (La entrada se supone valida).
-	 * @Post: Agrega la compra a la lista de compras que hizo el Cliente.
-	 */
-	public void agregarCompra(Compra nuevaCompra){
-		this.compras.add(nuevaCompra);
+	public String getApellido() {
+		return apellido;
 	}
 
-	/**
-	 * @Pre: - 
-	 * @Post: Devuelve la lista de compras que hizo el Cliente.
-	 */
-	public List<Compra> getCompras(){
-		return this.compras;
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 
-	/**
-	 * @Pre: suscriptible es distinto de null y no hay una suscripcion previa a el (La entrada se supone valida).
-	 * @Post: El Cliente queda suscripto al suscriptible indicado y se agrega a la lista de suscripciones.
-	 */
-	public void suscribirse(Suscriptible suscriptible){
-
-		boolean esAnual = false;
-		this.crearSuscripcion(suscriptible, esAnual);
-
+	public String getDireccion() {
+		return direccion;
 	}
 
-	/**
-	 * @Pre: suscriptible es distinto de null y no hay una suscripcion previa a el (La entrada se supone valida).
-	 * @Post: El Cliente queda suscripto anualmente al suscriptible indicado y se agrega a la lista de suscripciones.
-	 */
-	public void suscribirseAnualmente(Suscriptible suscriptible){
-
-		boolean esAnual = true;
-		this.crearSuscripcion(suscriptible, esAnual);
-
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
 
-	/**
-	 * @Pre: suscripcion es distinto de null (La entrada se supone valida).
-	 * @Post: Elimina de la lista de suscripciones (Sea anual o no) a la inscripcion insertada.
-	 */
-	public void eliminarSuscripcion(Suscripcion suscripcion){
-		this.suscripciones.remove(suscripcion);
-	}
-
-	/**
-	 * @Pre: - 
-	 * @Post: Devuelve la lista de suscripciones a suscriptibles del Cliente.
-	 */
-	public List<Suscripcion> getSuscripciones(){
-		return this.suscripciones;
-	}
-
-	private boolean suscriptibleExiste(Suscriptible suscriptible){
-
-		boolean suscriptibleExiste = false;
-
-		for(int i = 0 ; i < this.suscripciones. size() ; i++){
-
-			if(this.suscripciones.get(i).getSuscriptible() == suscriptible){
-
-				suscriptibleExiste = true;
-
-			}
-
-		}
-
-		return suscriptibleExiste;
-
-	}
-
-	private void crearSuscripcion(Suscriptible suscriptible, boolean esAnual){
-
-		if(!this.suscriptibleExiste(suscriptible)){
-
-			Suscripcion suscripcion = new Suscripcion(this, suscriptible, esAnual);
-			this.suscripciones.add(suscripcion);
-
-		}
-
+	public boolean equal(Cliente cliente) {
+		return (this.nombre == cliente.nombre && this.apellido == cliente.apellido);
 	}
 
 }
