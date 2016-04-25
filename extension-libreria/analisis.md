@@ -36,5 +36,5 @@ Analisis post-programacion:
               anteriormente. Se debio agregar mas de lo que se debio corregir.
 
 
-UNTREF: Analisis y Diseño Orientado a Objetos 2016 - Gonzalo Nahuel Di Pierro (Legajo: 26816).
+UNTreF: Analisis y Diseño Orientado a Objetos 2016 - Gonzalo Nahuel Di Pierro (Legajo: 26816).
 Profesor: Nicolas Paez.
