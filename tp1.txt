@@ -1,4 +1,7 @@
-TP N°1
+# TP N°1 - Equipo Número 1
 
-Integrantes: Pena, Gabriel y Di Pierro, Gonzalo Nahuel
-Repositorio: https://github.com/GonzaloNahuel93/aydoo-2016-3
+Integrantes:
+- Pena, Gabriel.
+- Di Pierro, Gonzalo Nahuel.
+
+Repositorio: https://github.com/GonzaloNahuel93/aydoo-2016-e1
