@@ -1,20 +1,20 @@
 package ar.edu.untref.aydoo;
 
-
-
-public class Program 
-{
-    
+/**
+ * @author Gonzalo Nahuel Di Pierro.
+ * Ejercicio corregido 21/06/2016.
+ *
+ */
+public class Program {
 
 	/**
 	* @Pre: El número ingresado es un entero mayor que 1 (Uno) (La entrada se supone válida en este caso).
 	* @Post: Se devuelve al número descompuesto en factores primos.
 	* @param numero
 	*/
-	public static final void descomponerNumero(int numero)
-    {
-        
+	public static final void main(String arg[]){
 
+		int numero = Integer.parseInt(arg[0]);
 		System.out.print("\nFactores primos del número " + numero + ": ");
 
 		//numeroActual: Es el número que se tiene como referencia a medida que van ocurriendo las sucesivas divisiones para la descomposición del número original
@@ -38,6 +38,5 @@ public class Program
 		}   
 
 	}
-
 
 }
